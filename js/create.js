@@ -7,7 +7,7 @@ $().ready(() => {
 });
 
 const create = () => {
-    let user = {
+    let user1 = {
         id: 0,
         username: $("#iUsername").val(),
         password: "Train@MAX",
@@ -18,11 +18,11 @@ const create = () => {
         isReviewer: $("#iReviewer").prop("checked"),
         isAdmin: $("#iAdmin").prop("checked")
     }
-    console.debug(user);
+    console.debug(user1);
     $.ajax({
         url: "http://localhost:5000/api/users",
         method: "POST",
-        data: JSON.stringify(user),
+        data: JSON.stringify(user1),
         contentType: "application/json"
     })
         .then((res) => {
