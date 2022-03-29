@@ -5,9 +5,28 @@ $().ready(() => {
         refresh();
     });
 
+    $("#delete").on("click", () => {
+        remove();
+    });
+
     refresh();
     
 });
+
+const remove = () => {
+    $.ajax({
+        method: "DELETE",
+        url: "http://localhost:5000/api/users/1",
+        contentType: "application/json"
+    })
+        .then((res) => {
+            console.debug("Delete response:", res);
+            document.location.href = "index.html";
+        })
+        .fail((err) => {
+            console.error("ERROR:", err);
+        });
+}
 
 const refresh = () => {
     $.getJSON("http://localhost:5000/api/users/1")
