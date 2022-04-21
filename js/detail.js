@@ -1,5 +1,9 @@
+let parms;
 
 $().ready(() => {
+
+    parms = getUrlParms();
+    console.debug("Parms:", parms);
 
     $("#refresh").on("click", () => {
         refresh();
@@ -14,9 +18,10 @@ $().ready(() => {
 });
 
 const remove = () => {
+    let id = parms.id;
     $.ajax({
         method: "DELETE",
-        url: "http://localhost:5000/api/users/1",
+        url: `http://localhost:5000/api/users/${id}`,
         contentType: "application/json"
     })
         .then((res) => {
@@ -29,7 +34,8 @@ const remove = () => {
 }
 
 const refresh = () => {
-    $.getJSON("http://localhost:5000/api/users/1")
+    let id = parms.id;
+    $.getJSON(`http://localhost:5000/api/users/${id}`)
         .then((res) => { 
             console.debug(res); 
             display(res);
